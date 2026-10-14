@@ -12,9 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && python3 -m venv /opt/venv \
     && /opt/venv/bin/pip install --no-cache-dir speedtest-cli \
     && ln -s /opt/venv/bin/speedtest-cli /usr/local/bin/speedtest-cli \
-    && rm -rf /var/lib/apt/lists/* /tmp/ookla-repo.sh \
-    && echo "nameserver 8.8.8.8" > /etc/resolv.conf \
-    && echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+    && rm -rf /var/lib/apt/lists/* /tmp/ookla-repo.sh
 
 WORKDIR /app
 COPY benchmark.py /app/benchmark.py
