@@ -48,7 +48,10 @@ def now():
 
 
 def run(command, timeout=TIMEOUT):
-    return subprocess.run(command, capture_output=True, text=True, timeout=timeout, check=True)
+    result = subprocess.run(command, capture_output=True, text=True, timeout=timeout)
+    if result.returncode != 0:
+        raise RuntimeError(f"exit {result.returncode}: {result.stderr.strip()}")
+    return result
 
 
 def mbps(bits_per_second):
