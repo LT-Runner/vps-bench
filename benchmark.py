@@ -36,8 +36,9 @@ DEFAULT_IPERF_SERVERS = [
     {"host": "speedtest2.serverius.net", "port": 5002, "region": "NL-Serverius"},
     {"host": "speedtest3.serverius.net", "port": 5002, "region": "NL-Serverius"},
 ]
+IPERF_SERVERS_JSON = os.getenv("IPERF_SERVERS_JSON", "").strip()
 try:
-    IPERF_SERVERS = json.loads(os.getenv("IPERF_SERVERS_JSON", "")) or DEFAULT_IPERF_SERVERS
+    IPERF_SERVERS = json.loads(IPERF_SERVERS_JSON) if IPERF_SERVERS_JSON else DEFAULT_IPERF_SERVERS
 except json.JSONDecodeError as exc:
     raise SystemExit(f"Invalid IPERF_SERVERS_JSON: {exc}")
 
