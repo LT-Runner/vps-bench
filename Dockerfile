@@ -5,14 +5,16 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PIP_DISABLE_PIP_VERSION_CHECK=1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-      ca-certificates curl gnupg python3 python3-venv iperf3 jq \
+      ca-certificates curl gnupg python3 python3-venv iperf3 jq dnsutils \
     && curl -fsSL https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh -o /tmp/ookla-repo.sh \
     && bash /tmp/ookla-repo.sh \
     && apt-get update && apt-get install -y --no-install-recommends speedtest \
     && python3 -m venv /opt/venv \
     && /opt/venv/bin/pip install --no-cache-dir speedtest-cli \
     && ln -s /opt/venv/bin/speedtest-cli /usr/local/bin/speedtest-cli \
-    && rm -rf /var/lib/apt/lists/* /tmp/ookla-repo.sh
+    && rm -rf /var/lib/apt/lists/* /tmp/ookla-repo.sh \
+    && echo "nameserver 8.8.8.8" > /etc/resolv.conf \
+    && echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 
 WORKDIR /app
 COPY benchmark.py /app/benchmark.py
