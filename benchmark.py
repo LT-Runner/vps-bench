@@ -22,9 +22,19 @@ HTTP_URL = "https://speed.cloudflare.com/__down?bytes={}"
 
 # Override IPERF_SERVERS_JSON with a JSON array if you want other servers.
 DEFAULT_IPERF_SERVERS = [
-    {"host": "speedtest.init7.net", "port": 5201, "region": "CH"},
-    {"host": "iperf3-vie-at.alwyzon.net", "port": 5201, "region": "AT"},
-    {"host": "ams.speedtest.clouvider.net", "port": 5203, "region": "NL"},
+    {"host": "ping.online.net", "port": 5200, "region": "FR-Scaleway"},
+    {"host": "ping-90ms.online.net", "port": 5200, "region": "FR-Scaleway"},
+    {"host": "iperf3.moji.fr", "port": 5200, "region": "FR-Moji"},
+    {"host": "speedtest.milkywan.fr", "port": 9200, "region": "FR-MilkyWan"},
+    {"host": "paris.bbr.iperf.bytel.fr", "port": 9200, "region": "FR-Paris-BBR"},
+    {"host": "paris.cubic.iperf.bytel.fr", "port": 9200, "region": "FR-Paris-Cubic"},
+    {"host": "mrs.bbr.iperf.bytel.fr", "port": 9200, "region": "FR-Mrs-BBR"},
+    {"host": "lyo.bbr.iperf.bytel.fr", "port": 9200, "region": "FR-Lyon-BBR"},
+    {"host": "tls.bbr.iperf.bytel.fr", "port": 9200, "region": "FR-Tls-BBR"},
+    {"host": "ren.bbr.iperf.bytel.fr", "port": 9200, "region": "FR-Ren-BBR"},
+    {"host": "speedtest1.serverius.net", "port": 5002, "region": "NL-Serverius"},
+    {"host": "speedtest2.serverius.net", "port": 5002, "region": "NL-Serverius"},
+    {"host": "speedtest3.serverius.net", "port": 5002, "region": "NL-Serverius"},
 ]
 try:
     IPERF_SERVERS = json.loads(os.getenv("IPERF_SERVERS_JSON", "")) or DEFAULT_IPERF_SERVERS
